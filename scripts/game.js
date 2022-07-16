@@ -26,15 +26,15 @@ class Game {
     this.start();
   };
 
-  clear() {
+ clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
   }
-
+/*
    stop() {
     clearInterval(this.interval);
     this.isRunning = false;
-  }
+  } */
 
 /*   updateObstacles() {
     for (let i = 0; i < this.obstacles.length; i++) {
@@ -67,7 +67,7 @@ class Game {
       );
     }
   } */
-
+/* 
   checkGameOver = () => {
     const crashed = this.obstacles.some((obstacle) => {
       return this.player.crashWith(obstacle);
@@ -84,14 +84,14 @@ class Game {
     this.ctx.fillStyle = 'black';
     this.ctx.fillText(`Score: ${points}`, 850, 50);
   } 
-
+ */
   updateGameArea = () => {
     this.clear();
-    this.checkGameOver();
-    this.updateObstacles();
+   /*  this.checkGameOver();
+    this.updateObstacles(); */
     this.player.newPos();
     this.player.draw();
     this.sun.drawSun();
-     this.score(); 
+  /*    this.score();  */
   };
 }
