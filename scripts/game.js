@@ -40,26 +40,48 @@ class Game {
   } 
    updateObstacles() {
     for (let i = 0; i < this.rays.length; i++) {
-      this.rays[i].x -= 1;
-      this.rays[i].y +=1;
-      this.rays[i].drawRays();
+      
+      if(this.player.x <= 550){
+        this.rays[i].x -= 1;
+        this.rays[i].y +=1;
+        this.rays[i].drawRays();
+      } else{
+        this.rays[i].x += 5;
+        this.rays[i].y +=5;
+        this.rays[i].drawRays();
+      }
+      
+      
+   
     }
 
     this.frames += 1;
 
      
+if(this.frames % 120 === 0){
 
-if(this.frames % 30 === 0){
 
+  if(this.player.x <= 550){
   let minHeight = 50;
-
   let maxHeight = 300;
+  let minWidth = 15;
+  let maxWidth = 35;
 
+  let width = Math.floor(Math.random () *(maxWidth - minWidth +1) + minWidth);
   let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
 
+  this.rays.push(new Rays(width, height, 'yellow', 520, 80, this.ctx));
+  } else{
+  let minHeight = 250;
+  let maxHeight = 300;
+  let minWidth = 15;
+  let maxWidth = 35;
 
-  this.rays.push(new Rays(20, height, 'yellow', 820, 100, this.ctx));
+  let width = Math.floor(Math.random () *(maxWidth - minWidth +1) + minWidth);
+  let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
 
+  this.rays.push(new Rays(width, height, 'yellow', 520, 80, this.ctx));
+  }
 }
 }
 /* 
