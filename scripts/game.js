@@ -6,7 +6,8 @@ class Game {
     this.height = height;
     this.player = player;
     this.sun = sun;
-    this.obstacles = [];
+    this.rays = [];
+   /*  this.obstacles = []; */
     this.interval = null;
     this.isRunning = false;
   }
@@ -21,8 +22,10 @@ class Game {
     this.player.y = 280;
     this.sun.x = 850;
     this.sun.y = 50;
+    /* this.rays.x = 700;
+    this.rays.y = 50; */
     this.frames = 0;
-    this.obstacles = [];
+    this.rays = [];
     this.start();
   };
 
@@ -30,43 +33,35 @@ class Game {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
   }
-/*
-   stop() {
+
+  stop() {
     clearInterval(this.interval);
     this.isRunning = false;
-  } */
-
-/*   updateObstacles() {
-    for (let i = 0; i < this.obstacles.length; i++) {
-      this.obstacles[i].x -= 1;
-      this.obstacles[i].y +=1;
-      this.obstacles[i].drawSun();
+  } 
+   updateObstacles() {
+    for (let i = 0; i < this.rays.length; i++) {
+      this.rays[i].x -= 1;
+      this.rays[i].y +=1;
+      this.rays[i].drawRays();
     }
 
     this.frames += 1;
 
-    if (this.frames % 120 === 0) {
-    let x = this.width;
-    
+     
 
-  
- let height = 20; 
+if(this.frames % 30 === 0){
 
-      let minGap = 50;
+  let minHeight = 50;
 
-      let maxGap = 200;
+  let maxHeight = 300;
 
-      let gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
+  let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
 
-      this.obstacles.push(
-        new Sun(20, height, 'black', 500, 100, this.ctx)
-        );
 
-      this.obstacles.push(
-        new Sun(20, x - height - gap, 'aquamarine', x, height + gap, this.ctx)
-      );
-    }
-  } */
+  this.rays.push(new Rays(20, height, 'yellow', 820, 100, this.ctx));
+
+}
+}
 /* 
   checkGameOver = () => {
     const crashed = this.obstacles.some((obstacle) => {
@@ -87,11 +82,18 @@ class Game {
  */
   updateGameArea = () => {
     this.clear();
-   /*  this.checkGameOver();
-    this.updateObstacles(); */
+   /*  this.checkGameOver();*/
+    this.updateObstacles(); 
     this.player.newPos();
     this.player.draw();
     this.sun.drawSun();
+    rays.newPosition();
+    rays.drawRays();
+   
+    
+
+   
+  
   /*    this.score();  */
   };
 }
