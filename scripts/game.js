@@ -106,11 +106,14 @@ if(this.frames % 60 === 0){
     const crashedRays = this.rays.some((rays) => {
       return this.player.crashWithRay(rays);
     });
-/*     const crashedSharks = this.sharks.some((sharks) =>{
-      return this.player.crashWith(sharks);
-    }) */
+    const crashedSharks = this.sharks.some((sharks) =>{
+      return this.player.crashWithShark(sharks);
+    }) 
 
     if (crashedRays) {
+      this.stop();
+    }
+    if(crashedSharks){
       this.stop();
     }
   };

@@ -51,5 +51,15 @@ class Player{
         this.left() > ray.right()
       );
       }
+      crashWithShark(shark){
+        return !(
+          this.bottom() < shark.top()  ||
+          this.top() > shark.bottom()|| 
+          this.right() < shark.left() || 
+          this.left() > shark.right()
+        );
+        }
+
+
     }
   
