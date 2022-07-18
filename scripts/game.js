@@ -7,7 +7,6 @@ class Game {
     this.player = player;
     this.sun = sun;
     this.rays = [];
-   /*  this.obstacles = []; */
     this.interval = null;
     this.isRunning = false;
   }
@@ -20,10 +19,10 @@ class Game {
   reset = () => {
     this.player.x = 0;
     this.player.y = 280;
-    this.sun.x = 850;
-    this.sun.y = 50;
-    /* this.rays.x = 700;
-    this.rays.y = 50; */
+    this.sun.x = 550;
+    this.sun.y = 75;
+    this.rays.x = 520 ;
+    this.rays.y = 60; 
     this.frames = 0;
     this.rays = [];
     this.start();
@@ -40,54 +39,54 @@ class Game {
   } 
    updateObstacles() {
     for (let i = 0; i < this.rays.length; i++) {
-      
-      if(this.player.x <= 550){
-        this.rays[i].x -= 1;
-        this.rays[i].y +=1;
-        this.rays[i].drawRays();
-      } else{
-        this.rays[i].x += 5;
-        this.rays[i].y +=5;
-        this.rays[i].drawRays();
+      if(this.player.x <= 550 && this.player.y <= 200){
+        this.rays[i].x -= 2;
+        this.rays[i].drawRays(); 
+      } else if(this.player.x <= 550 && this.player.y > 200){
+        this.rays[i].x -= 3;
+        this.rays[i].y += 2;
+        this.rays[i].drawRays(); 
+      } else if(this.player.x > 550 && this.player.y <=200){
+        this.rays[i].x += 2;
+        this.rays[i].drawRays(); 
+      }else{
+        this.rays[i].x += 3;
+        this.rays[i].y += 2;
+        this.rays[i].drawRays(); 
       }
-      
-      
-   
     }
-
     this.frames += 1;
 
      
-if(this.frames % 120 === 0){
-
+if(this.frames % 60 === 0){
 
   if(this.player.x <= 550){
-  let minHeight = 50;
-  let maxHeight = 300;
-  let minWidth = 15;
-  let maxWidth = 35;
+  let minHeight = 20;
+  let maxHeight = 100;
+  let minWidth = 10;
+  let maxWidth = 25;
 
   let width = Math.floor(Math.random () *(maxWidth - minWidth +1) + minWidth);
   let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
 
   this.rays.push(new Rays(width, height, 'yellow', 520, 80, this.ctx));
   } else{
-  let minHeight = 250;
-  let maxHeight = 300;
-  let minWidth = 15;
-  let maxWidth = 35;
+  let minHeight = 20;
+  let maxHeight = 100;
+  let minWidth = 10;
+  let maxWidth = 25;
 
   let width = Math.floor(Math.random () *(maxWidth - minWidth +1) + minWidth);
   let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
 
-  this.rays.push(new Rays(width, height, 'yellow', 520, 80, this.ctx));
+  this.rays.push(new Rays(width, height, 'yellow', 600, 80, this.ctx));
   }
 }
 }
-/* 
+
   checkGameOver = () => {
-    const crashed = this.obstacles.some((obstacle) => {
-      return this.player.crashWith(obstacle);
+    const crashed = this.rays.some((rays) => {
+      return this.player.crashWith(rays);
     });
 
     if (crashed) {
@@ -100,22 +99,18 @@ if(this.frames % 120 === 0){
     this.ctx.font = '24px sans-serif';
     this.ctx.fillStyle = 'black';
     this.ctx.fillText(`Score: ${points}`, 850, 50);
-  } 
- */
+  }  
+
   updateGameArea = () => {
     this.clear();
-   /*  this.checkGameOver();*/
+    this.checkGameOver(); 
     this.updateObstacles(); 
-    this.player.newPos();
+    this.rays.forEach((el) => {
+      el.drawRays()
+    })
+   this.player.newPos();
     this.player.draw();
     this.sun.drawSun();
-    rays.newPosition();
-    rays.drawRays();
-   
-    
-
-   
-  
-  /*    this.score();  */
+   this.score();  
   };
 }

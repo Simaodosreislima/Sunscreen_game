@@ -9,14 +9,22 @@ class Rays {
     this.speedX = 0;
     this.speedY = 0;
 
-  }
-  newPosition(){
-    this.x += this.speedX;
-    this.y += this.speedY;
-  }
-  
-    drawRays(){
+  } 
+    drawRays(){  
       this.ctx.fillStyle = this.color;
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
     }
+    left(){
+      return this.x;
+    }
+    right(){
+      return this.x + this.width;
+    }
+    top(){
+      return this.y;
+    }
+    bottom(){
+      return this.y + this.height;
+    }
+    
   }

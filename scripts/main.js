@@ -7,7 +7,7 @@ const cHeight = canvas.height;
 // creating the player
 const player = new Player(30, 30, "red", 0, 280, ctx);
 //creating the sun
-const sun = new Sun(550,75, 50, 0, Math.PI*2, 100, 100,"yellow", ctx);
+const sun = new Sun(550,0, 150, 0, Math.PI, 300, 300,"yellow", ctx);
 
 
 //creating the game
@@ -26,7 +26,7 @@ startBtn.addEventListener("click", () => {
 
 })
 
-document.addEventListener("keydown", (e) => {
+/* document.addEventListener("keydown", (e) => {
   switch (e.code) {
     case "ArrowUp":
       player.speedY -= 1;
@@ -43,9 +43,26 @@ document.addEventListener("keydown", (e) => {
       break;
   }
 
-});
+}); */
+window.addEventListener("keydown", (e) => {
+  switch (e.code)  {
+      case "ArrowUp":
+       player.speedY -= 2;
+       break;
+      case "ArrowDown":
+       player.speedY += 2;  
+       break;
+      case "ArrowLeft":
+       player.speedX -= 2;
+       break;
+    case "ArrowRight":
+      player.speedX += 2;
+      break; 
+    }      
+  });
 
 document.addEventListener("keyup", (e) => {
   player.speedX = 0;
   player.speedY = 0;
 }); 
+
