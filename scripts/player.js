@@ -43,10 +43,10 @@ class Player{
       return this.y + this.height;
     }
     
-    crashWith(ray){
+    crashWithRay(ray){
       return !(
-        this.bottom() < ray.top() ||
-        this.top() > ray.bottom() || 
+        this.bottom() < ray.top()  ||
+        this.top() > ray.bottom()|| 
         this.right() < ray.left() || 
         this.left() > ray.right()
       );
