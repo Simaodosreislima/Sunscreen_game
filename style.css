@@ -50,3 +50,8 @@ body{
   font-size: 3vh;
   padding: 10px 30px;
 }
+
+#start:hover {
+  background-color: antiquewhite;
+  color:#191654;
+}
