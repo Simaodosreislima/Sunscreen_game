@@ -8,13 +8,17 @@ class Game {
     this.sun = sun;
     this.rays = [];
     this.sharks = [];
-  /*   this.background = new Image(); */
     this.interval = null;
     this.isRunning = false;
+    this.time = 45 
+    this.timer = null
   }
 
   start() {
     this.interval = setInterval(this.updateGameArea, 20);
+    this.timer = setInterval(() => {
+      this.time--
+    }, 1000)
     this.isRunning = true;
   }
 
@@ -24,6 +28,7 @@ class Game {
     this.sun.x = 550;
     this.sun.y = 0;
     this.frames = 0;
+    this.time = 45;
     this.rays = [];
     this.sharks = [];
     this.start();
@@ -36,12 +41,13 @@ class Game {
 
   stop() {
     clearInterval(this.interval);
+    clearInterval(this.timer)
     this.isRunning = false;
-  } 
+  }  
    updateObstacles() {
     //rays array
     for (let i = 0; i < this.rays.length; i++) {
-     if(this.player.x <= 550 && this.player.y > 270){
+     if(this.player.x <= 550 && this.player.y >= 270){
         this.rays[i].x -= 3;
         this.rays[i].y += 2;
         this.rays[i].drawRays(); 
@@ -51,7 +57,6 @@ class Game {
         this.rays[i].drawRays(); 
       }
     }
-  /*   this.frames += 1; */
 
      
 if(this.frames % 60 === 0){
@@ -85,7 +90,7 @@ if(this.frames % 60 === 0){
     this.sharks[i].drawSharks();
     }
   }
-  this.frames +=1;
+  
 
   if(this.frames %60 === 0){
     if(this.player.y > 200){
@@ -118,28 +123,30 @@ if(this.frames % 60 === 0){
     }
   };
 
-  Timer() {
-    const time = 45 - Math.floor(this.frames / 60); // just to test if the game stopped when countdown reached 0. It does.
-    if(time === 0){
+  countTime() {
+    // just to test if the game stopped when countdown reached 0. It does.
+    if(this.time === 0){
       this.stop();
-      time = 0;
+      this.time = 0;
     }
    /*  this.ctx.strokeStyle = "red"; */
     this.ctx.fillStyle = "green";
-    this.ctx.stroke();
-    this.ctx.fillRect(850, 50, 100, 20);
+    this.ctx.strokeRect(850, 50, 45, 20);
+    this.ctx.fillRect(850, 50, this.time, 20);
     this.ctx.font = '24px sans-serif';
     this.ctx.fillStyle = 'black';
-    this.ctx.fillText(`${time}`, 850, 30);
+    this.ctx.fillText(`${this.time}`, 850, 30);
   }  
 
   updateGameArea = () => {
+    this.frames++
+    /* this.time -= Math.floor(this.frames / 1000) */
     this.clear();
     this.checkGameOver(); 
     /* this.background.drawBackground(); */
     this.updateObstacles(); 
     this.rays.forEach((el) => {
-      el.drawRays()
+      el.drawRays();
     })
     this.sharks.forEach((el) =>{
       el.drawSharks();
@@ -147,6 +154,6 @@ if(this.frames % 60 === 0){
    this.player.newPos();
     this.player.draw();
     this.sun.drawSun();
-   this.Timer();  
+   this.countTime();  
   };
 }
