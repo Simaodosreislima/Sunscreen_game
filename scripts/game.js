@@ -135,7 +135,6 @@ if(this.frames % 60 === 0){
 
 }
 
-
   checkGameOver = () => {
     const crashedRays = this.rays.some((rays) => {
       return this.player.crashWithRay(rays);
@@ -146,9 +145,17 @@ if(this.frames % 60 === 0){
 
     if (crashedRays) {
       this.stop();
+      this.ctx.font = "45px Edu VIC WA NT Beginner, cursive";
+      this.ctx.fillStyle= "antiqueWhite";
+      this.ctx.fillText("Apply sunscreen next time!", 240, 250);
+
     }
     if(crashedSharks){
       this.stop();
+      this.ctx.font = "45px Edu VIC WA NT Beginner, cursive";
+      this.ctx.fillStyle= "antiqueWhite";
+      this.ctx.fillText("Avoid being eaten next time!", 225, 250);
+      
     }
   };
 
@@ -157,8 +164,11 @@ if(this.frames % 60 === 0){
     if(this.time === 0){
       this.stop();
       this.time = 0;
+      this.ctx.font = "45px Edu VIC WA NT Beginner, cursive";
+      this.ctx.fillStyle= "antiqueWhite";
+      this.ctx.fillText("Look at the clock next time!", 225, 250);
     }
-   /*  this.ctx.strokeStyle = "red"; */
+
     this.ctx.fillStyle = "green";
     this.ctx.strokeRect(850, 50, 45, 20);
     this.ctx.fillRect(850, 50, this.time, 20);
@@ -166,14 +176,17 @@ if(this.frames % 60 === 0){
     this.ctx.fillStyle = 'black';
     this.ctx.fillText(`${this.time}`, 850, 30);
   }  
-
+/*   printGameOver(){
+    if(this.isRunning = false){
+      this.ctx.font = "50px Edu VIC WA NT Beginner, cursive";
+      this.ctx.fillText("Game Over!", 450, 200);
+    }
+  }
+ */
   updateGameArea = () => {
     this.frames++
-    /* this.time -= Math.floor(this.frames / 1000) */
     this.clear();
-/*     this.drawBackground(); */
     this.checkGameOver(); 
-    /* this.background.drawBackground(); */
     this.updateObstacles(); 
     this.rays.forEach((el) => {
       el.drawRays();

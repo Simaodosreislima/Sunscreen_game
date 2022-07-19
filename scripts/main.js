@@ -27,24 +27,6 @@ startBtn.addEventListener("click", () => {
 
 })
 
-/* document.addEventListener("keydown", (e) => {
-  switch (e.code) {
-    case "ArrowUp":
-      player.speedY -= 1;
-      break;
-    case "ArrowDown":
-      player.speedY += 1;
-      break;
-
-    case "ArrowLeft":
-      player.speedX -= 1;
-      break;
-    case "ArrowRight":
-      player.speedX += 1;
-      break;
-  }
-
-}); */
 window.addEventListener("keydown", (e) => {
   switch (e.code)  {
       case "ArrowUp":

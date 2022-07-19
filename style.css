@@ -36,6 +36,7 @@ body{
 #canvas {
   border: 5px solid antiquewhite; 
    border-radius: 10px; 
+   box-shadow: 5px 10px 10px black;
 }
 
 #start{
@@ -53,5 +54,7 @@ body{
 
 #start:hover {
   background-color: antiquewhite;
-  color:#191654;
+  color: black;
+  border: 1px solid black;
+  box-shadow: 5px 8px 10px black;
 }
