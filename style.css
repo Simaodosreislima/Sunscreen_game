@@ -5,15 +5,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Edu VIC WA NT Beginner', cursive;
 }
 
 
 body{
-
   background: #43C6AC;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
 }
 
 #container{
@@ -24,14 +23,30 @@ body{
 }
 
 #container h1{
- margin: 3vh;
+ margin: 2vh;
  font-family: 'Edu VIC WA NT Beginner', cursive;
  color: yellow;
- font-size: 20vh;
+ font-size: 15vh;
+ /* webkit-text-fill-color: yellow; */ /* Will override color (regardless of order) */
+  /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: orange;  */
 
 }
 
 #canvas {
   border: 5px solid antiquewhite; 
    border-radius: 10px; 
+}
+
+#start{
+  all: unset;
+  list-style-type: none;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  border:1px solid antiquewhite;
+  color: antiquewhite;
+  font-weight: 400;
+  border-radius: 5px;
+  font-size: 3vh;
+  padding: 10px 30px;
 }
