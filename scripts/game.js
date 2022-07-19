@@ -8,6 +8,7 @@ class Game {
     this.sun = sun;
     this.rays = [];
     this.sharks = [];
+    /* this.image =  */
     this.interval = null;
     this.isRunning = false;
     this.time = 45 
@@ -47,21 +48,37 @@ class Game {
    updateObstacles() {
     //rays array
     for (let i = 0; i < this.rays.length; i++) {
-     if(this.player.x <= 550 && this.player.y >= 270){
+     if(this.player.x <= 350 && this.player.y >= 270){
         this.rays[i].x -= 3;
         this.rays[i].y += 2;
         this.rays[i].drawRays(); 
-      }else{
-        this.rays[i].x += 3;
+      }else if (this.player.x > 350 && this.player.x <= 500 && this.player.y >= 270){
+        this.rays[i].x -= 3;
         this.rays[i].y += 2;
         this.rays[i].drawRays(); 
-      }
+      } else if (this.player.x > 500 && this.player.x <= 650 && this.player.y >= 270){
+        this.rays[i].x += 0;
+        this.rays[i].y += 7;
+        this.rays[i].drawRays(); 
+      } else if (this.player.x > 650 && this.player.x <= 800 && this.player.y >= 270){
+        this.rays[i].x += 3;
+        this.rays[i].y += 7;
+        this.rays[i].drawRays(); 
+      } else if (this.player.x > 800 && this.player.x <= 900 && this.player.y >= 270){
+        this.rays[i].x += 7;
+        this.rays[i].y += 7;
+        this.rays[i].drawRays(); 
+      }else {
+        this.rays[i].x += 7;
+        this.rays[i].y += 7;
+        this.rays[i].drawRays(); 
     }
+  }
 
      
 if(this.frames % 60 === 0){
 
-  if(this.player.x <= 550){
+  if(this.player.x){
   let minHeight = 20;
   let maxHeight = 100;
   let minWidth = 10;
@@ -71,35 +88,47 @@ if(this.frames % 60 === 0){
   let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
 
   this.rays.push(new Rays(width, height, 'yellow', 520, 80, this.ctx));
-  } else{
-  let minHeight = 20;
-  let maxHeight = 100;
-  let minWidth = 10;
-  let maxWidth = 25;
-
-  let width = Math.floor(Math.random () *(maxWidth - minWidth +1) + minWidth);
-  let height = Math.floor(Math.random() * (maxHeight - minHeight + 1) + minHeight);
-
-  this.rays.push(new Rays(width, height, 'yellow', 600, 80, this.ctx));
-  }
+  } 
 }
   //sharks array 
   for(let i = 0; i <this.sharks.length; i++){
-    if(this.player.y > 150){
-    this.sharks[i].x -=4;
+    if(this.player.y > 250){
+    this.sharks[i].x -=7;
     this.sharks[i].drawSharks();
     }
   }
   
 
   if(this.frames %60 === 0){
-    if(this.player.y > 200){
+    if(this.player.y > 200 && this.player.y <= 350){
       let height = 15;
       let width = 30;
       let minY = 270;
-      let maxY = 499;
+      let maxY = 350;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
       this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+    } else if(this.player.y > 350 && this.player.y <= 400){
+      let height = 15;
+      let width = 30;
+      let minY = 350;
+      let maxY = 400;
+      let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
+      this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+    } else if(this.player.y > 400 && this.player.y <= 450){
+      let height = 15;
+      let width = 30;
+      let minY = 400;
+      let maxY = 450;
+      let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
+      this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+    } else{
+      let height = 15;
+      let width = 30;
+      let minY = 450;
+      let maxY = 470;
+      let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
+      this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+
     }
   }
  
@@ -142,6 +171,7 @@ if(this.frames % 60 === 0){
     this.frames++
     /* this.time -= Math.floor(this.frames / 1000) */
     this.clear();
+/*     this.drawBackground(); */
     this.checkGameOver(); 
     /* this.background.drawBackground(); */
     this.updateObstacles(); 

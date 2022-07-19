@@ -9,7 +9,8 @@ const player = new Player(30, 30, "red", 0, 280, ctx);
 //creating the sun
 const sun = new Sun(550,0, 150, 0, Math.PI, "yellow", ctx);
 
-
+/* const backgroundImg = "docs/assets/images/AquaMarine.jpg";
+const background = new ScrollingBackground(1000, 500, backgroundImg); */
 //creating the game
 let game;
 //game.start();

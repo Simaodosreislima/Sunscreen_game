@@ -1,5 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@700&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body{
+
+  background: #43C6AC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+#container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#container h1{
+ margin: 3vh;
+ font-family: 'Edu VIC WA NT Beginner', cursive;
+ color: yellow;
+ font-size: 20vh;
+
+}
+
 #canvas {
-  border: 2px solid black; 
- /*  background-color: skyblue; */
-  /* border-radius: 5%; */
+  border: 5px solid antiquewhite; 
+   border-radius: 10px; 
 }
