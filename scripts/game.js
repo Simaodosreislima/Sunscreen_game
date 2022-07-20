@@ -101,33 +101,25 @@ if(this.frames % 60 === 0){
 
   if(this.frames %60 === 0){
     if(this.player.y > 200 && this.player.y <= 350){
-      let height = 15;
-      let width = 30;
       let minY = 270;
       let maxY = 350;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
     } else if(this.player.y > 350 && this.player.y <= 400){
-      let height = 15;
-      let width = 30;
       let minY = 350;
       let maxY = 400;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
     } else if(this.player.y > 400 && this.player.y <= 450){
-      let height = 15;
-      let width = 30;
       let minY = 400;
       let maxY = 450;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
     } else{
-      let height = 15;
-      let width = 30;
       let minY = 450;
       let maxY = 470;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(width,height, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
 
     }
   }
@@ -176,13 +168,7 @@ if(this.frames % 60 === 0){
     this.ctx.fillStyle = 'black';
     this.ctx.fillText(`${this.time}`, 850, 30);
   }  
-/*   printGameOver(){
-    if(this.isRunning = false){
-      this.ctx.font = "50px Edu VIC WA NT Beginner, cursive";
-      this.ctx.fillText("Game Over!", 450, 200);
-    }
-  }
- */
+
   updateGameArea = () => {
     this.frames++
     this.clear();
