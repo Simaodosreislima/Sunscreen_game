@@ -10,7 +10,7 @@ class Player{
     this.speedY = 0;
     const img = new Image();
     img.addEventListener('load', () => {} )
-    img.src = '../docs/assets/images/swimmer-100x50-transparent.png'
+    img.src = './docs/assets/images/swimmer-100x50-transparent.png'
     this.img = img;
   }
  

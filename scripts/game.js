@@ -16,7 +16,7 @@ class Game {
     this.backgroundSpeed = -1;
     const img = new Image();
     img.addEventListener('load', () => {} )
-    img.src = '../docs/assets/images/background-image.jpg'
+    img.src = './docs/assets/images/background-image.jpg'
     this.img = img;
   }
 
@@ -49,7 +49,7 @@ class Game {
     this.backgroundX += this.backgroundSpeed;
     this.backgroundX %= this.width;
      if(this.frames > 1600){
-      this.img.src = '../docs/assets/images/beach.png';
+      this.img.src = './docs/assets/images/beach.png';
       this.backgroundX = 0; // stops the background running
       this.player.y = 400; // mainly to fit the player in the right place in the photo
       this.sharks=[]; // eliminates sharks as the player gets to the beach
@@ -185,6 +185,17 @@ if(this.frames % 60 === 0){
       
     }
 
+    if(crashedRays && crashedSharks){
+      this.stop();
+      this.player.x = 475;
+      this.player.y = 350;
+      this.sharks =[];
+      this.rays =[];
+      this.ctx.font = "20px Edu VIC WA NT Beginner, cursive";
+      this.ctx.fillStyle= "antiqueWhite";
+      this.ctx.fillText("Damn, did you really just get hit by a ray and a shark? You suck", 250, 300);
+    }
+
     if(this.frames > 1600 && this.player.x > 635 && this.player.y === 400){
       this.stop();
     }
@@ -202,11 +213,11 @@ if(this.frames % 60 === 0){
     }
 
     this.ctx.fillStyle = "green";
-    this.ctx.strokeRect(850, 50, 45, 20);
-    this.ctx.fillRect(850, 50, this.time, 20);
+    this.ctx.strokeRect(150, 50, 45, 20);
+    this.ctx.fillRect(150, 50, this.time, 20);
     this.ctx.font = '24px sans-serif';
     this.ctx.fillStyle = 'black';
-    this.ctx.fillText(`${this.time}`, 850, 30);
+    this.ctx.fillText(`${this.time} seconds`, 150, 30);
   }  
 
   updateGameArea = () => {
