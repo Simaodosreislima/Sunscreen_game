@@ -64,8 +64,8 @@ color: antiquewhite;
 #canvas {
   border: 5px solid antiquewhite; 
    border-radius: 10px; 
-   box-shadow: 5px 10px 10px black;
-}
+   box-shadow: 5px 10px 10px black;}
+
 
 #start{
   all: unset;

@@ -8,11 +8,16 @@ class Sharks {
     this.ctx = ctx;
     this.speedX = 0;
     this.speedY = 0;
+    const img = new Image();
+    img.addEventListener('load', () => {} )
+    img.src = '../docs/assets/images/shark-50x25-transparent.png'
+    this.img = img;
 
   } 
     drawSharks(){  
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      /* this.ctx.fillStyle = this.color;
+      this.ctx.fillRect(this.x, this.y, this.width, this.height); */
+      this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
     left(){
       return this.x;

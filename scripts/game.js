@@ -13,6 +13,12 @@ class Game {
     this.isRunning = false;
     this.time = 45 
     this.timer = null
+    this.backgroundX = 0
+    this.backgroundSpeed = -1;
+    const img = new Image();
+    img.addEventListener('load', () => {} )
+    img.src = '../docs/assets/images/background-image.jpg'
+    this.img = img;
   }
 
   start() {
@@ -24,8 +30,8 @@ class Game {
   }
 
   reset = () => {
-    this.player.x = 0;
-    this.player.y = 280;
+    this.player.x = 1;
+    this.player.y = 270;
     this.sun.x = 550;
     this.sun.y = 0;
     this.frames = 0;
@@ -38,6 +44,24 @@ class Game {
  clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
+  }
+
+  drawBackground(){
+    this.backgroundX += this.backgroundSpeed;
+    this.backgroundX %= this.width;
+    /* if(this.frames > 10000){
+      this.img.src = '../docs/assets....'
+    } */
+
+
+    this.ctx.drawImage(this.img, this.backgroundX , 0)
+
+    if(this.backgroundSpeed < 0){
+      this.ctx.drawImage(this.img, this.backgroundX + this.width , 0,)
+    } else {
+      this.ctx.drawImage(this.img, this.backgroundX - this.img.width, 0)
+
+    }
   }
 
   stop() {
@@ -137,6 +161,8 @@ if(this.frames % 60 === 0){
 
     if (crashedRays) {
       this.stop();
+      this.rays = [];
+      this.sharks =[];
       this.ctx.font = "45px Edu VIC WA NT Beginner, cursive";
       this.ctx.fillStyle= "antiqueWhite";
       this.ctx.fillText("Apply sunscreen next time!", 240, 250);
@@ -144,6 +170,8 @@ if(this.frames % 60 === 0){
     }
     if(crashedSharks){
       this.stop();
+      this.sharks =[];
+      this.rays =[];
       this.ctx.font = "45px Edu VIC WA NT Beginner, cursive";
       this.ctx.fillStyle= "antiqueWhite";
       this.ctx.fillText("Avoid being eaten next time!", 225, 250);
@@ -172,6 +200,7 @@ if(this.frames % 60 === 0){
   updateGameArea = () => {
     this.frames++
     this.clear();
+    this.drawBackground()
     this.checkGameOver(); 
     this.updateObstacles(); 
     this.rays.forEach((el) => {
