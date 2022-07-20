@@ -8,6 +8,10 @@ class Player{
     this.ctx = ctx;
     this.speedX = 0;
     this.speedY = 0;
+    const img = new Image();
+    img.addEventListener('load', () => {} )
+    img.src = '../docs/assets/images/swimmer-100x50-transparent.png'
+    this.img = img;
   }
  
 
@@ -26,8 +30,7 @@ class Player{
   }
   
     draw(){
-      this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
   
     left(){

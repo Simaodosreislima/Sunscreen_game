@@ -15,8 +15,6 @@ class Sharks {
 
   } 
     drawSharks(){  
-      /* this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.width, this.height); */
       this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
     left(){

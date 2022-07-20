@@ -8,7 +8,6 @@ class Game {
     this.sun = sun;
     this.rays = [];
     this.sharks = [];
-    /* this.image =  */
     this.interval = null;
     this.isRunning = false;
     this.time = 45 
@@ -45,15 +44,19 @@ class Game {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
   }
-
+// The problem should be here
   drawBackground(){
     this.backgroundX += this.backgroundSpeed;
     this.backgroundX %= this.width;
-    /* if(this.frames > 10000){
-      this.img.src = '../docs/assets....'
-    } */
-
-
+     if(this.frames > 1600){
+      this.img.src = '../docs/assets/images/beach.png';
+      this.backgroundX = 0; // stops the background running
+      this.player.y = 400; // mainly to fit the player in the right place in the photo
+      this.sharks=[]; // eliminates sharks as the player gets to the beach
+      this.rays=[]; // eliminates rays as the player gets to the beach
+    
+    }
+     
     this.ctx.drawImage(this.img, this.backgroundX , 0)
 
     if(this.backgroundSpeed < 0){
@@ -77,8 +80,8 @@ class Game {
         this.rays[i].y += 2;
         this.rays[i].drawRays(); 
       }else if (this.player.x > 350 && this.player.x <= 500 && this.player.y >= 270){
-        this.rays[i].x -= 3;
-        this.rays[i].y += 2;
+        this.rays[i].x += 2;
+        this.rays[i].y += 3;
         this.rays[i].drawRays(); 
       } else if (this.player.x > 500 && this.player.x <= 650 && this.player.y >= 270){
         this.rays[i].x += 0;
@@ -161,22 +164,31 @@ if(this.frames % 60 === 0){
 
     if (crashedRays) {
       this.stop();
+      this.player.x = 475;
+      this.player.y = 350;
       this.rays = [];
       this.sharks =[];
       this.ctx.font = "45px Edu VIC WA NT Beginner, cursive";
       this.ctx.fillStyle= "antiqueWhite";
-      this.ctx.fillText("Apply sunscreen next time!", 240, 250);
+      this.ctx.fillText("Apply sunscreen next time!", 250, 300);
 
     }
     if(crashedSharks){
       this.stop();
+      this.player.x = 475;
+      this.player.y = 350;
       this.sharks =[];
       this.rays =[];
       this.ctx.font = "45px Edu VIC WA NT Beginner, cursive";
       this.ctx.fillStyle= "antiqueWhite";
-      this.ctx.fillText("Avoid being eaten next time!", 225, 250);
+      this.ctx.fillText("Avoid being eaten next time!", 250, 300);
       
     }
+
+    if(this.frames > 1600 && this.player.x > 635 && this.player.y === 400){
+      this.stop();
+    }
+
   };
 
   countTime() {
@@ -200,8 +212,9 @@ if(this.frames % 60 === 0){
   updateGameArea = () => {
     this.frames++
     this.clear();
-    this.drawBackground()
+    this.drawBackground();
     this.checkGameOver(); 
+
     this.updateObstacles(); 
     this.rays.forEach((el) => {
       el.drawRays();
