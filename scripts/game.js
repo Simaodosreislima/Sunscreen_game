@@ -34,11 +34,13 @@ class Game {
   }
 
   reset = () => {
+    this.clear()
     this.player.x = 1;
     this.player.y = 270;
     this.sun.x = 550;
     this.sun.y = 0;
     this.frames = 0;
+    this.backgroundX = 0;
     this.img.src = './docs/assets/images/background-image.jpg'; // only if i have this line, the game stop impleting the last image on reset
     this.time = 45;
     this.rays = [];
@@ -71,6 +73,8 @@ class Game {
 
     }
   }
+
+  // Stop only stopping when time reaches 0
 
   stop() {
     clearInterval(this.interval);
@@ -201,19 +205,17 @@ if(this.frames % 60 === 0){
       this.ctx.fillText("Damn, did you really just get hit by a ray and a shark? You suck", 250, 300);
     }
 
-    
-   
-    
-  
-  };
-  drawGameWin(){
-    if(this.frames > 1600  && this.player.x >= 635 && this.player.y === 400){
+    if (this.frames > 1600 && this.player.x >= 635 && this.player.y === 400) {
       this.img.src = "./docs/assets/images/background-image.jpg";
       this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
       this.ctx.drawImage(this.winImg, 0, 0, this.width, this.height);
-      this.clearRect(0, 0, this.width, this.height)
+      this.clearRect(0, 0, this.width, this.height);
       this.stop();
     } 
+  };
+
+  drawGameWin(){
+    
   }
 
 
@@ -240,7 +242,7 @@ if(this.frames % 60 === 0){
     this.frames++;
     this.clear();
     this.drawBackground();
-    this.drawGameWin();
+    //this.drawGameWin();
     this.checkGameOver(); 
     this.updateObstacles(); 
     this.rays.forEach((el) => {

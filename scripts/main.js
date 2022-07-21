@@ -20,6 +20,7 @@ startBtn.addEventListener("click", () => {
     game.start();
   } else if (game && !game.isRunning) {
     //when crashed
+
     game.reset();
   }
 
