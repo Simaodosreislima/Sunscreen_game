@@ -202,21 +202,28 @@ if(this.frames % 60 === 0){
       this.rays =[];
       this.ctx.font = "20px Edu VIC WA NT Beginner, cursive";
       this.ctx.fillStyle= "antiqueWhite";
-      this.ctx.fillText("Damn, did you really just get hit by a ray and a shark? You suck", 250, 300);
+      this.ctx.fillText("Damn, did you really just get hit by a ray and a shark? You suck", 150, 300);
     }
 
     if (this.frames > 1600 && this.player.x >= 635 && this.player.y === 400) {
       this.img.src = "./docs/assets/images/background-image.jpg";
       this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
       this.ctx.drawImage(this.winImg, 0, 0, this.width, this.height);
-      this.clearRect(0, 0, this.width, this.height);
+      this.ctx.font = "40px Edu VIC WA NT Beginner, cursive";
+      this.ctx.fillStyle= "blue";
+      this.ctx.fillText("Congratulations!", 55, 200);
+      this.ctx.font = "30px Edu VIC WA NT Beginner, cursive";
+      this.ctx.fillStyle= "blue";
+      this.ctx.fillText("SPF 50 never felt so good!", 450, 470);
       this.stop();
+      this.clearRect(0, 0, this.width, this.height);
+      
     } 
   };
 
-  drawGameWin(){
+/*   drawGameWin(){
     
-  }
+  } */
 
 
 
@@ -242,7 +249,6 @@ if(this.frames % 60 === 0){
     this.frames++;
     this.clear();
     this.drawBackground();
-    //this.drawGameWin();
     this.checkGameOver(); 
     this.updateObstacles(); 
     this.rays.forEach((el) => {
