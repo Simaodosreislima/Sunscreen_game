@@ -18,6 +18,11 @@ class Game {
     img.addEventListener('load', () => {} )
     img.src = './docs/assets/images/background-image.jpg'
     this.img = img;
+
+    const winImg = new Image();
+    winImg.addEventListener('load', () => {} )
+    winImg.src = './docs/assets/images/sunscreen.png'
+    this.winImg = winImg;
   }
 
   start() {
@@ -55,9 +60,8 @@ class Game {
       this.player.y = 400; // mainly to fit the player in the right place in the photo
       this.sharks=[]; // eliminates sharks as the player gets to the beach
       this.rays=[]; // eliminates rays as the player gets to the beach
-     
     }
-     
+
     this.ctx.drawImage(this.img, this.backgroundX , 0)
 
     if(this.backgroundSpeed < 0){
@@ -132,22 +136,22 @@ if(this.frames % 60 === 0){
       let minY = 270;
       let maxY = 350;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30, 1000, y, this.ctx));
     } else if(this.player.y > 350 && this.player.y <= 400){
       let minY = 350;
       let maxY = 400;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30, 1000, y, this.ctx));
     } else if(this.player.y > 400 && this.player.y <= 450){
       let minY = 400;
       let maxY = 450;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30, 1000, y, this.ctx));
     } else{
       let minY = 450;
       let maxY = 470;
       let y = Math.floor(Math.random() * (maxY - minY +1) +minY);
-      this.sharks.push(new Sharks(50,30, "green", 1000, y, this.ctx));
+      this.sharks.push(new Sharks(50,30,1000, y, this.ctx));
 
     }
   }
@@ -197,15 +201,25 @@ if(this.frames % 60 === 0){
       this.ctx.fillText("Damn, did you really just get hit by a ray and a shark? You suck", 250, 300);
     }
 
-    if(this.frames >  1600  && this.player.x >= 635 && this.player.y === 400){
-     /*  this.img.src = './docs/assets/images/sunscreen.png'; */
-      this.stop();
-    }
- 
+    
+   
+    
+  
   };
+  drawGameWin(){
+    if(this.frames > 1600  && this.player.x >= 635 && this.player.y === 400){
+      this.img.src = "./docs/assets/images/background-image.jpg";
+      this.ctx.drawImage(this.img, 0, 0, this.width, this.height);
+      this.ctx.drawImage(this.winImg, 0, 0, this.width, this.height);
+      this.clearRect(0, 0, this.width, this.height)
+      this.stop();
+    } 
+  }
+
+
 
   countTime() {
-    // just to test if the game stopped when countdown reached 0. It does.
+    // just to test if the game spped when countdown reached 0. It does.
     if(this.time === 0){
       this.stop();
       this.time = 0;
@@ -223,9 +237,10 @@ if(this.frames % 60 === 0){
   }  
 
   updateGameArea = () => {
-    this.frames++
+    this.frames++;
     this.clear();
     this.drawBackground();
+    this.drawGameWin();
     this.checkGameOver(); 
     this.updateObstacles(); 
     this.rays.forEach((el) => {
@@ -234,9 +249,9 @@ if(this.frames % 60 === 0){
     this.sharks.forEach((el) =>{
       el.drawSharks();
     })
-   this.player.newPos();
+    this.player.newPos();
     this.player.draw();
     this.sun.drawSun();
-   this.countTime();  
+    this.countTime();  
   };
 }

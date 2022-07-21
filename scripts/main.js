@@ -5,13 +5,13 @@ const cWidth = canvas.width;
 const cHeight = canvas.height;
 
 // creating the player
-const player = new Player(50, 30, "red", 0, 280, ctx);
+const player = new Player(50, 30, 0, 280, ctx);
 //creating the sun
 const sun = new Sun(550,0, 150, 0, Math.PI, "yellow", ctx);
 
-//creating the game
+;//creating the game
 let game;
-//game.start();
+
 
 const startBtn = document.getElementById("start");
 startBtn.addEventListener("click", () => {

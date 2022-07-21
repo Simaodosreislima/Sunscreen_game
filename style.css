@@ -63,6 +63,7 @@ color: antiquewhite;
 
 #canvas {
   border: 5px solid antiquewhite; 
+  background-image: "./docs/assets/images/background-image.jpg";
    border-radius: 10px; 
    box-shadow: 5px 10px 10px black;}
 
