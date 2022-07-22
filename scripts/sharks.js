@@ -9,7 +9,7 @@ class Sharks {
     this.speedY = 0;
     const img = new Image();
     img.addEventListener('load', () => {} )
-    img.src = '../docs/assets/images/shark-50x25-transparent.png'
+    img.src = './docs/assets/images/shark-50x25-transparent.png'
     this.img = img;
 
   } 
